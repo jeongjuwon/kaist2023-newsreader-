@@ -67,9 +67,6 @@ const NewsDetailScreen: React.FC<Props> = () => {
           <Text style={{fontWeight: 'bold'}}>Author:</Text> {author}
         </Details>
         <Details>
-          <Text style={{fontWeight: 'bold'}}>Content:</Text> {content}
-        </Details>
-        <Details>
           <Text style={{fontWeight: 'bold'}}>Published At:</Text>{' '}
           {dayjs(publishedAt).format('YYYY-MM-DD')}
         </Details>
