@@ -23,6 +23,10 @@ export default function MainBottomTabNavigator() {
       <Tab.Screen name="Headlines" component={TabScreen} />
       <Tab.Screen
         name="Sedail"
+        options={{
+          tabBarLabel: '세계경제',
+          headerTitle: '세계경제',
+        }}
         component={TabScreen}
         initialParams={{
           source: 'Sedaily.co',
@@ -34,12 +38,20 @@ export default function MainBottomTabNavigator() {
         initialParams={{
           source: 'Hani.co.kr',
         }}
+        options={{
+          tabBarLabel: '한겨레',
+          headerTitle: '한겨레',
+        }}
       />
       <Tab.Screen
         name="Chosun"
         component={TabScreen}
         initialParams={{
           source: 'Chosun.com',
+        }}
+        options={{
+          tabBarLabel: '조선일보',
+          headerTitle: '조선일보',
         }}
       />
     </Tab.Navigator>

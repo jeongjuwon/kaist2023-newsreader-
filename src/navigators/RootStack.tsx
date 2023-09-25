@@ -24,7 +24,13 @@ export default function RootStack() {
           title: '메인',
         }}
       />
-      <Stack.Screen name="NewsDetail" component={NewsDetailScreen} />
+      <Stack.Screen
+        name="NewsDetail"
+        options={{
+          title: '상세보기',
+        }}
+        component={NewsDetailScreen}
+      />
     </Stack.Navigator>
   );
 }

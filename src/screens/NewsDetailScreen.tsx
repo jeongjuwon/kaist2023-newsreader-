@@ -33,16 +33,7 @@ const NewsDetailScreen: React.FC<Props> = () => {
   const route = useRoute<Props['route']>();
 
   const {
-    article: {
-      author,
-      content,
-      description,
-      publishedAt,
-      source,
-      title,
-      url,
-      urlToImage,
-    },
+    article: {author, description, publishedAt, source, title, url, urlToImage},
   } = route.params;
 
   const handleOpenLink = () => {
