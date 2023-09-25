@@ -1,24 +1,49 @@
 // src/screens/NewsListScreen.tsx
 import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
-import {useFocusEffect, useRoute} from '@react-navigation/native';
+import {
+  CompositeScreenProps,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import {StackScreenProps} from '@react-navigation/stack';
 import React, {useCallback, useState} from 'react';
 import styled from 'styled-components/native';
 import {Article, getHeadlines} from '../apis/headlines';
 import NewsList from '../components/NewsList';
 import {NewsCategoryParamList} from '../navigators/NewsCategoryNavigator';
+import {RootStackParamList} from '../navigators/RootStack';
 
 const NewsListContainer = styled.View`
   flex: 1;
 `;
 
-type Props = MaterialTopTabScreenProps<
-  NewsCategoryParamList,
-  'Business' | 'Entertainment' | 'Health' | 'Science' | 'Sports' | 'Technology'
+type Props = CompositeScreenProps<
+  MaterialTopTabScreenProps<
+    NewsCategoryParamList,
+    | 'Business'
+    | 'Entertainment'
+    | 'Health'
+    | 'Science'
+    | 'Sports'
+    | 'Technology'
+  >,
+  StackScreenProps<RootStackParamList>
 >;
 
 const NewsListScreen: React.FC<Props> = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const route = useRoute<Props['route']>();
+  const navigation = useNavigation<Props['navigation']>();
+
+  const onSelect = useCallback(
+    (article: Article) => {
+      navigation.navigate('NewsDetail', {
+        article,
+      });
+    },
+    [navigation],
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -39,7 +64,7 @@ const NewsListScreen: React.FC<Props> = () => {
 
   return (
     <NewsListContainer>
-      <NewsList articles={articles} />
+      <NewsList articles={articles} onSelect={onSelect} />
     </NewsListContainer>
   );
 };

@@ -11,9 +11,10 @@ const NewsListContainer = styled.View`
 
 type Props = {
   articles: Article[];
+  onSelect: (article: Article) => void;
 };
 
-const NewsList: React.FC<Props> = ({articles}) => {
+const NewsList: React.FC<Props> = ({articles, onSelect}) => {
   return (
     <NewsListContainer>
       <FlatList
@@ -24,6 +25,7 @@ const NewsList: React.FC<Props> = ({articles}) => {
             title={item.title}
             description={item.description}
             imageUrl={item.urlToImage}
+            onSelect={() => onSelect(item)}
           />
         )}
       />

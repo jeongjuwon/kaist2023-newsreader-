@@ -1,27 +1,30 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Article} from '../apis/headlines';
+import NewsDetailScreen from '../screens/NewsDetailScreen';
 import MainBottomTabNavigator from './MainBottomTabNavigator';
 
-function NewDetail() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>NewDetail!</Text>
-    </View>
-  );
-}
+export type RootStackParamList = {
+  MainTab: undefined;
+  NewsDetail: {
+    article: Article;
+  };
+};
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootStack() {
   return (
-    <Stack.Navigator
-      initialRouteName="MainTab"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="MainTab" component={MainBottomTabNavigator} />
-      <Stack.Screen name="NewDetail" component={NewDetail} />
+    <Stack.Navigator initialRouteName="MainTab">
+      <Stack.Screen
+        name="MainTab"
+        component={MainBottomTabNavigator}
+        options={{
+          headerShown: false,
+          title: '메인',
+        }}
+      />
+      <Stack.Screen name="NewsDetail" component={NewsDetailScreen} />
     </Stack.Navigator>
   );
 }

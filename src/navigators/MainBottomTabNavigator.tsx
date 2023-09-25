@@ -17,7 +17,7 @@ export type MainBottomTabParamList = {
 
 const Tab = createBottomTabNavigator<MainBottomTabParamList>();
 
-export default function MainTabNavigator() {
+export default function MainBottomTabNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Headlines" component={TabScreen} />

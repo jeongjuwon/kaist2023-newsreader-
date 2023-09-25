@@ -6,6 +6,7 @@ interface NewsItemProps {
   title: string;
   description: string;
   imageUrl: string | null;
+  onSelect: () => void;
 }
 
 const Container = styled.View`
@@ -25,9 +26,14 @@ const Description = styled.Text`
   font-size: 16px;
 `;
 
-const NewsItem: React.FC<NewsItemProps> = ({title, description, imageUrl}) => {
+const NewsItem: React.FC<NewsItemProps> = ({
+  title,
+  description,
+  imageUrl,
+  onSelect,
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onSelect}>
       <Container>
         <Title>{title}</Title>
         {imageUrl && (
