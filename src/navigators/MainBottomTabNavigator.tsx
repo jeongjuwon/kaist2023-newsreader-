@@ -1,5 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import * as React from 'react';
+import {RouteProp} from '@react-navigation/native';
+import React, {FC} from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import TabScreen from '../screens/TabScreen';
 
 export type MainBottomTabParamList = {
@@ -17,9 +19,40 @@ export type MainBottomTabParamList = {
 
 const Tab = createBottomTabNavigator<MainBottomTabParamList>();
 
+const TabBarIcon = (
+  route: RouteProp<MainBottomTabParamList, keyof MainBottomTabParamList>,
+) => {
+  const Component: FC<{focused: boolean; color: string; size: number}> = ({
+    focused,
+    color,
+    size,
+  }) => {
+    let iconName = '';
+
+    if (route.name === 'Headlines') {
+      iconName = focused ? 'apps' : 'apps-outline';
+    } else if (route.name === 'Sedail') {
+      iconName = focused ? 'albums' : 'albums-outline';
+    } else if (route.name === 'Hani') {
+      iconName = focused ? 'albums' : 'albums-outline';
+    } else if (route.name === 'Chosun') {
+      iconName = focused ? 'albums' : 'albums-outline';
+    }
+
+    // You can return any component that you like here!
+    return <Ionicons name={iconName} size={size} color={color} />;
+  };
+  return Component;
+};
+
 export default function MainBottomTabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: TabBarIcon(route),
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}>
       <Tab.Screen name="Headlines" component={TabScreen} />
       <Tab.Screen
         name="Sedail"

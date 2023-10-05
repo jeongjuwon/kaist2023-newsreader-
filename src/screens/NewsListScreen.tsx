@@ -28,7 +28,7 @@ type Props = CompositeScreenProps<
     | 'Sports'
     | 'Technology'
   >,
-  StackScreenProps<RootStackParamList>
+  StackScreenProps<RootStackParamList, 'NewsDetail'>
 >;
 
 const NewsListScreen: React.FC<Props> = () => {

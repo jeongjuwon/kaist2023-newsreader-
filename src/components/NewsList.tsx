@@ -6,7 +6,7 @@ import {Article} from '../apis/headlines';
 import NewsItem from './NewsItem';
 
 const NewsListContainer = styled.View`
-  padding: 16px;
+  background-color: #ffffff;
 `;
 
 type Props = {
